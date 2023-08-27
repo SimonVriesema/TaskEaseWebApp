@@ -3,7 +3,9 @@
     <!-- Header Section -->
     <div>
       <img :src="imagePath" class="h-10 mb-8" alt="TaskEase Logo" />
-      <h1 class="text-3xl font-headingStyle">Sign up for TaskEase</h1>
+      <h1 class="text-3xl font-headingStyle">
+        Sign up for <router-link to="/">TaskEase</router-link>
+      </h1>
       <p class="font-paragraphStyle mt-4 mb-3">
         Already have an account?
         <a class="text-secondary cursor-pointer" @click="switchToSignIn">
@@ -138,7 +140,7 @@
 <script>
 export default {
   name: "SignUp",
-  props: ["imagePath", "signUpView"],
+  props: ["imagePath", "signUpView", "accounts"],
   data() {
     return {
       email: null,
