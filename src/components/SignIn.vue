@@ -14,21 +14,27 @@
       </p>
       <div class="text-sm text-left mt-4 md:mt-6">
         <button
-          class="bg-gray-50 border border-gray-300 text-gray-800 rounded-lg py-2 px-4 hover:bg-gray-100 w-full mb-2 md:mb-2"
+          class="bg-gray-50 border border-gray-300 text-gray-800 rounded-lg py-2 px-4 hover:bg-gray-100 w-full mb-2 md:mb-2 flex items-center justify-center"
         >
           <i class="fa fa-google mr-2"></i>
-          Sign in with Google Account
+          <span class="mx-auto">Sign in with Google</span>
         </button>
         <button
-          class="bg-black text-white rounded-lg py-2 px-4 hover:bg-gray-900 w-full"
+          class="bg-blue-500 text-white rounded-lg py-2 px-4 hover:bg-blue-600 w-full mb-2 md:mb-2 flex items-center justify-center"
+        >
+          <i class="fa fa-facebook mr-2"></i>
+          <span class="mx-auto">Sign in with Facebook</span>
+        </button>
+        <button
+          class="bg-black text-white rounded-lg py-2 px-4 hover:bg-gray-900 w-full flex items-center justify-center"
         >
           <i class="fa fa-apple mr-2"></i>
-          Sign in with Apple ID
+          <span class="mx-auto">Sign in with Apple ID</span>
         </button>
       </div>
       <div class="flex items-center mt-4">
         <hr class="flex-grow border-gray-300" />
-        <div class="mx-4 text-gray-500">OR</div>
+        <div class="mx-4 text-gray-500">or</div>
         <hr class="flex-grow border-gray-300" />
       </div>
       <p
@@ -39,7 +45,7 @@
       </p>
     </div>
     <!-- Sign In Form -->
-    <div class="font-paragraphStyle">
+    <div class="font-paragraphStyle mt-2">
       <form class="space-y-5">
         <!-- Email Input -->
         <div>
