@@ -8,7 +8,7 @@ export const toggleSidebar = (state) => (collapsed.value = state);
 
 // Define the sidebar width values
 export const SIDEBAR_WIDTH = 260;
-export const SIDEBAR_WIDTH_COLLAPSED = 70;
+export const SIDEBAR_WIDTH_COLLAPSED = 95;
 
 // Compute the sidebar width based on the collapsed state
 export const sidebarWidth = computed(
