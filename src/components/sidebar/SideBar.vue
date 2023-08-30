@@ -5,7 +5,7 @@
       @mouseenter="toggleSidebar(false)"
       @mouseleave="toggleSidebar(true)"
       id="logo-sidebar"
-      class="fixed top-0 left-0 z-40 h-screen transition-all -translate-x-full border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+      class="backdrop-filter backdrop-blur-lg fixed top-0 left-0 z-40 bg-white h-screen transition-all -translate-x-full sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
       :style="{ width: sidebarWidth, transform: sidebarTransform }"
       aria-label="Sidebar"
     >

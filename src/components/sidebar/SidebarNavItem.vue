@@ -14,6 +14,9 @@
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             class="w-7 h-7"
+            :class="{
+              animate__bounceIn: isActive,
+            }"
           >
             <path
               :d="activeIconPath"
