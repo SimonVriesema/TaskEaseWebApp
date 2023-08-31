@@ -5,7 +5,7 @@
       @mouseenter="toggleSidebar(false)"
       @mouseleave="toggleSidebar(true)"
       id="logo-sidebar"
-      class="backdrop-filter backdrop-blur-lg fixed top-0 left-0 z-40 bg-white h-screen transition-all -translate-x-full sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+      class="fixed top-0 left-0 bg-white h-screen transition-all -translate-x-full sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
       :style="{ width: sidebarWidth, transform: sidebarTransform }"
       aria-label="Sidebar"
     >
@@ -30,7 +30,7 @@
             v-if="!collapsed"
             class="w-4/5 p-3 bg-gray-100 rounded-l-lg text-left"
           >
-            <h1 class="font-medium">Generate</h1>
+            <h1 class="font-medium">Create</h1>
           </div>
           <div
             class="rounded-r-lg"
