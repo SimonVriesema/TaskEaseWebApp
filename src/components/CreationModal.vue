@@ -106,12 +106,9 @@ export default {
     openModal() {
       this.open = true;
     },
-    // This method will be called when the child component emits the 'data-updated' event
     handleTaskDataUpdate(data) {
-      // You can access the emitted data here and perform actions with it
       console.log("Received data from child component:", data);
 
-      // You can also set the received data to a property in your parent component
       this.taskData = data;
       console.log(this.taskData)
     },
