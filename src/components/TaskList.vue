@@ -12,11 +12,6 @@
     <!-- Task List -->
     <div class="flex justify-center items-center h-60" v-if="tasks.length < 1">
       <div>
-        <img
-          :src="imagePath"
-          alt="Meditating Doodle"
-          class="m:h-1/2 sm:w-1/2 md:h-3/4 md:w-3/4 m-auto"
-        />
         <p class="text-center text-sm text-gray-500 font-paragraphStyle">
           No tasks
         </p>

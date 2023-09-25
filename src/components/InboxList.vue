@@ -25,11 +25,6 @@
         v-if="messages.length < 1"
       >
         <div class="p-2">
-          <img
-            :src="imagePath"
-            alt="Laying Doodle"
-            class="h-3/4 w-3/4 m-auto"
-          />
           <p class="text-center text-sm text-gray-500 font-paragraphStyle">
             No messages
           </p>
@@ -90,30 +85,30 @@ export default {
     return {
       imagePath: require("@/assets/images/svg/LayingDoodle.svg"),
       messages: [
-        // {
-        //   name: "Message 1",
-        //   author: "Jonathan Ive",
-        //   date: "2021-10-01",
-        //   content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ",
-        //   read: false,
-        //   hover: false,
-        // },
-        // {
-        //   name: "Message 1",
-        //   author: "Jonathan Ive",
-        //   date: "2021-10-01",
-        //   content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ",
-        //   read: false,
-        //   hover: false,
-        // },
-        // {
-        //   name: "Message 1",
-        //   author: "Jonathan Ive",
-        //   date: "2021-10-01",
-        //   content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ",
-        //   read: false,
-        //   hover: false,
-        // },
+        {
+          name: "Message 1",
+          author: "Jonathan Ive",
+          date: "2021-10-01",
+          content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ",
+          read: false,
+          hover: false,
+        },
+        {
+          name: "Message 1",
+          author: "Jonathan Ive",
+          date: "2021-10-01",
+          content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ",
+          read: false,
+          hover: false,
+        },
+        {
+          name: "Message 1",
+          author: "Jonathan Ive",
+          date: "2021-10-01",
+          content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ",
+          read: false,
+          hover: false,
+        },
       ],
     };
   },

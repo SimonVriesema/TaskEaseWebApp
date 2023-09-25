@@ -1,5 +1,4 @@
 <template>
-  <!-- Button to open the modal -->
   <button
       @click="openModal"
       class="hover:bg-secondaryhover text-white items-center rounded-full justify-center px-3 py-3 bg-secondary"
@@ -45,7 +44,7 @@
                   <div class="font-paragraphStyle mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
                     <DialogTitle as="h3"
                                  class="text-primaryText font-headingStyle text-lg text-base font-semibold leading-6 mb-2 text-gray-900">
-                      Create
+                      Create {{ this.selectedCreation == 1 ? 'Task' : 'Project'}}
                     </DialogTitle>
                     <div>
                       <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select
@@ -55,10 +54,12 @@
                               v-model="selectedCreation">
                         <option value=1>Task</option>
                         <option value=2>Project</option>
-                        <option value=3>Team</option>
                       </select>
                       <div v-if="selectedCreation == 1">
                         <TaskCreationForm @data-updated="handleTaskDataUpdate"></TaskCreationForm>
+                      </div>
+                      <div v-else-if="selectedCreation == 2">
+                        <ProjectCreationForm @data-updated="handleProjectDataUpdate"></ProjectCreationForm>
                       </div>
                     </div>
                   </div>
@@ -66,13 +67,17 @@
               </div>
               <div class="bg-gray-50 px-4 py-3 text-md sm:flex sm:flex-row-reverse sm:px-6">
                 <button
-                    @click="open = false"
-                  type="submit"
-                  class="text-white bg-secondary hover:bg-secondaryhover focus:ring-4 focus:outline-none
+                    @click="open = false, handleButton()"
+                    :class="{
+    'text-white bg-secondary hover:bg-secondaryhover focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800': !this.isDisabled,
+    'text-gray-500 bg-gray-200 cursor-not-allowed opacity-50 rounded-full text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-gray-400 dark:hover:bg-gray-500 dark:focus:ring-gray-600': this.isDisabled
+  }"
+                    type="submit"
+                    class="text-white bg-secondary hover:bg-secondaryhover focus:ring-4 focus:outline-none
                   focus:ring-blue-300 font-medium rounded-full text-sm w-full sm:w-auto px-5 py-2.5 text-center
                   dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                  >
-                  Submit
+                >
+                  Submit {{ 1 == this.selectedCreation ? 'Task' : 'Project' }}
                 </button>
               </div>
             </DialogPanel>
@@ -88,6 +93,7 @@ import {ref} from 'vue';
 import {Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot} from '@headlessui/vue';
 import {PencilSquareIcon} from '@heroicons/vue/24/outline';
 import TaskCreationForm from "@/components/TaskCreation.vue";
+import ProjectCreationForm from "@/components/ProjectCreation.vue";
 
 export default {
   name: "CreationModal",
@@ -95,10 +101,13 @@ export default {
     return {
       open: ref(false),
       selectedCreation: 1,
-      taskData: null
+      taskData: null,
+      projectData: null,
+      isDisabled: true,
     };
   },
   components: {
+    ProjectCreationForm,
     TaskCreationForm,
     Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot, PencilSquareIcon
   },
@@ -107,11 +116,26 @@ export default {
       this.open = true;
     },
     handleTaskDataUpdate(data) {
-      console.log("Received data from child component:", data);
-
       this.taskData = data;
-      console.log(this.taskData)
+      this.isDisabled = !(this.taskData.title !== null &&
+          this.taskData.priority !== null &&
+          this.taskData.description !== null &&
+          this.taskData.labels !== null &&
+          this.taskData.dueDate !== null);
     },
+    handleProjectDataUpdate(data) {
+      this.projectData = data;
+      this.isDisabled = !(this.projectData.title !== null &&
+          this.projectData.priority !== null &&
+          this.projectData.description !== null &&
+          this.projectData.labels !== null &&
+          this.taskData.dueDate !== null);
+    },
+    handleButton() {
+      //TODO: Create the POST route to store the Tasks/Projects in the database
+      //TODO: Add more button functionality
+      alert("Button Click!")
+    }
   },
 };
 </script>

@@ -67,24 +67,27 @@
         </div>
       </div>
       <div class="w-full md:w-1/2 px-4 mb-4">
-        <label for="dueDate" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Due
-          Date</label>
-        <div class="relative max-w-sm">
-          <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
-            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                 xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-              <path
-                  d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
-            </svg>
-          </div>
-          <input type="text" id="dueDate"
-                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-secondary focus:border-secondary block w-full pl-10"
-                 placeholder="MM/DD/YYYY"
-                 v-model.lazy="dueDate"
-                 @change="sendDataToParent"
-          >
-        </div>
-        <p v-if="validateDate(this.dueDate)">Please select a valid datee</p>
+        <label for="priority" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select
+          status</label>
+        <select id="priority"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-secondary focus:border-secondary block w-full p-2.5"
+                v-model="status"
+                @change="sendDataToParent"
+        >
+            <option value="0">Planning</option>
+            <option value="1">Active</option>
+            <option value="2">On Hold</option>
+            <option value="3">Completed</option>
+            <option value="4">Canceled</option>
+            <option value="5">Pending Approval</option>
+            <option value="6">In Review</option>
+            <option value="7">Delayed</option>
+            <option value="8">In Progress</option>
+            <option value="9">Under Maintenance</option>
+            <option value="10">Not Started</option>
+            <option value="11">Reopened</option>
+            <option value="12">Blocked</option>
+        </select>
       </div>
     </div>
 
@@ -93,34 +96,32 @@
 </template>
 <script>
 export default {
-  name: "TaskCreationForm",
+  name: "ProjectCreationForm",
   data() {
     return {
       title: null,
       priority: null,
       description: null,
       labels: [],
-      assignees: [],
       dueDate: null,
-      project: null,
-      assigneeEmails: [
-        {name: 'Assignee 1', email: 'assigneeEmails1@example.com'},
-        {name: 'Assignee 2', email: 'assigneeEmails2@gmail.com'},
-        {name: 'Assignee 3', email: 'assigneeEmails3@outlook.com'},
-        {name: 'Assignee 4', email: 'assigneeEmails4@yahoo.com'},
-        {name: 'Assignee 5', email: 'assigneeEmails5@emailprovider.com'}
-      ],
       newLabel: null,
+      status: null,
     }
   },
   methods: {
     addNewLabel() {
+      // Check if the newLabel is not empty and is not already in the labels array
       const isLabelValid = this.newLabel && !this.labels.includes(this.newLabel.trim());
+      // Check if the newLabel is not empty
       const isNotEmpty = this.newLabel.trim() !== '';
+      // Check if the labels array is below the maximum limit
       const isBelowMaxLimit = this.labels.length < 5;
 
+      // Check if the newLabel is valid, not empty, and the labels array is below the maximum limit
       if (isLabelValid && isNotEmpty && isBelowMaxLimit) {
+        // Add the newLabel to the labels array
         this.labels.push(this.newLabel.trim());
+        // Clear the input field
         this.newLabel = ''; // Clear the input field
       }
     },
@@ -131,6 +132,7 @@ export default {
         description: this.description,
         labels: this.labels,
         dueDate: this.dueDate,
+        status: this.status,
       });
     },
     validateDate(inputDate) {
@@ -140,18 +142,13 @@ export default {
       if (isNaN(dateToCheck)) {
         // InputDate is not a valid date
         alert('Invalid date format. Please enter a valid date.');
-        return false; // Return false to indicate validation failure
-      }
-      // Get the current date
-      const currentDate = new Date();
-      // Compare the input date with the current date
-      if (dateToCheck > currentDate) {
-        // The input date is in the future
-        return true;
-      } else {
-        // The input date is not in the future
+        // Return false to indicate that the date is invalid
         return false;
       }
+      // InputDate is a valid date
+      const currentDate = new Date();
+      // Check if the inputDate is greater than the currentDate
+      return dateToCheck > currentDate;
     }
   }
 }
