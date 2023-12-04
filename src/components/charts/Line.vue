@@ -47,7 +47,7 @@ export default {
     },
     height: {
       type: Number,
-      default: 120, // Adjust the default height as needed
+      default: 120,
     },
     cssClasses: {
       default: '',
@@ -75,19 +75,19 @@ export default {
         scales: {
           x: {
             grid: {
-              display: false, // Hide the x-axis grid lines
+              display: false,
             },
           },
           y: {
-            beginAtZero: true, // Start the y-axis at zero
+            beginAtZero: true,
             grid: {
-              display: false, // Hide the x-axis grid lines
+              display: false,
             },
           },
         },
         plugins: {
           legend: {
-            display: false, // Show the legend
+            display: false,
           },
         },
       },

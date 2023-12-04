@@ -1,4 +1,6 @@
-# frontend
+# TaskEase Web Application Frontend
+
+Boost your productivity with TaskEase. Simplify tasks, stay organized, and collaborate seamlessly.
 
 ## Project setup
 ```
